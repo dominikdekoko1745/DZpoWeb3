@@ -16,8 +16,6 @@ form.addEventListener("submit", async function(event) {
     result.textContent = "Проверяем...";
 
     try {
-
-        // Получаем информацию о студенте
         const studentResponse = await fetch(
             `${API_URL}/students/${studentId}`
         );
@@ -28,8 +26,6 @@ form.addEventListener("submit", async function(event) {
 
         const student = await studentResponse.json();
 
-
-        // Получаем информацию о корпусе
         const buildingResponse = await fetch(
             `${API_URL}/buildings/${buildingNumber}`
         );
@@ -40,8 +36,6 @@ form.addEventListener("submit", async function(event) {
 
         const building = await buildingResponse.json();
 
-
-        // Получаем информацию о комнате
         const roomResponse = await fetch(
             `${API_URL}/rooms/${roomNumber}`
         );
@@ -53,14 +47,10 @@ form.addEventListener("submit", async function(event) {
         const room = await roomResponse.json();
 
 
-        // Проверяем условия
-
         const studentIsResident = student.resident;
         const buildingForStudents = building.forStudents;
         const roomIsAvailable = room.available;
 
-
-        // Если все условия выполнены
         if (
             studentIsResident &&
             buildingForStudents &&
